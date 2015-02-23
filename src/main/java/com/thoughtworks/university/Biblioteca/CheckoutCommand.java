@@ -13,6 +13,7 @@ public class CheckoutCommand extends Command {
             desiredBook.checkOut();
             availableBooks.removeBook(desiredBook);
             borrowedBooks.addBook(desiredBook);
+            System.out.println("Thank you! Enjoy the book.");
         }
         catch(BookNotAvailableException exception) {
             throw new BookNotAvailableException();

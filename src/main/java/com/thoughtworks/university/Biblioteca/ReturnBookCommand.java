@@ -14,9 +14,10 @@ public class ReturnBookCommand extends Command {
             desiredBook.returnBook();
             borrowedBooks.removeBook(desiredBook);
             availableBooks.addBook(desiredBook);
+            System.out.println("Thank you for returning the book.");
         }
         catch(NullPointerException nullPointerExc) {
-            new InvalidCommand().execute();
+            System.out.println("That book is not available.");
         }
     }
 
