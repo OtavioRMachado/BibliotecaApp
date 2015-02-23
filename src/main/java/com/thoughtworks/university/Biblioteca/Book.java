@@ -2,9 +2,9 @@ package com.thoughtworks.university.Biblioteca;
 
 public class Book {
     private String title;
-
+    private static int idCounter = 1;
     private String author;
-
+    private int uniqueID;
     private int year;
     private boolean available;
 
@@ -28,6 +28,12 @@ public class Book {
         this.author = author;
         this.year = year;
         this.available = true;
+        this.uniqueID = idCounter;
+        idCounter++;
+    }
+
+    public int getID() {
+        return uniqueID;
     }
 
 
@@ -38,5 +44,9 @@ public class Book {
             this.available = false;
         }
 
+    }
+
+    public void returnBook() {
+        this.available = true;
     }
 }

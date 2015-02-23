@@ -14,7 +14,7 @@ public class QuitCommandTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
     @Test
-    public void shouldSendMeAFarewell() {
+    public void shouldSendMeAFarewell() throws BookNotAvailableException {
         setUpStreams();
         Command quit = new QuitCommand();
         quit.execute();

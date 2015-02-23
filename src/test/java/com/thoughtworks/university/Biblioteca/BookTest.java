@@ -5,6 +5,8 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class BookTest {
     public Book book;
@@ -45,5 +47,13 @@ public class BookTest {
         exception.expect(BookNotAvailableException.class);
         book.checkOut();
         book.checkOut();
+    }
+
+    @Test
+    public void shouldReturnBookSuccessfully() throws BookNotAvailableException {
+        book.checkOut();
+        assertFalse(book.isAvailable());
+        book.returnBook();
+        assertTrue(book.isAvailable());
     }
 }

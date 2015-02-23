@@ -29,4 +29,13 @@ public class BookHandler {
     public Book getBook(int position) {
         return books.get(position);
     }
+
+    public Book getById(int id) {
+        for (int i = 0; i < books.size(); i++) {
+            if(books.get(i).getID() == id) {
+                return books.get(i);
+            }
+        }
+        return null;
+    }
 }

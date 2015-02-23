@@ -16,12 +16,13 @@ public class BibliotecaApp {
     public static BookHandler availableBooks = new BookHandler();
     public static BookHandler borrowedBooks = new BookHandler();
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws BookNotAvailableException {
         System.out.println(WELCOME_MESSAGE);
 
         loadMenu();
         loadAvailableBooks();
         loadBorrowedBooks();
+
         Command myCommand = getCommandFromLine();
         while(!(myCommand instanceof QuitCommand)) {
             loadCommand(myCommand);
@@ -31,16 +32,20 @@ public class BibliotecaApp {
     }
 
     private static void loadBorrowedBooks() {
-
+        return;
     }
 
     private static void loadAvailableBooks() {
-
+        Book exampleBook = new Book("Kathy Sierra, Bert Bates", "Head First Java 2nd Edition", 2005);
+        availableBooks.addBook(exampleBook);
     }
 
-    private static boolean loadCommand(Command myCommand) {
-        if(myCommand instanceof CheckoutCommand || myCommand instanceof ReturnBookCommand) {
-            // SET BOOK
+    private static boolean loadCommand(Command myCommand) throws BookNotAvailableException {
+        if(myCommand instanceof CheckoutCommand) {
+            ((CheckoutCommand) myCommand).setHandlers(availableBooks, borrowedBooks);
+        }
+        else if(myCommand instanceof ReturnBookCommand) {
+            ((ReturnBookCommand) myCommand).setHandlers(availableBooks, borrowedBooks);
         }
         else if(myCommand instanceof ListBooksCommand) {
             ((ListBooksCommand) myCommand).loadBookList(availableBooks);

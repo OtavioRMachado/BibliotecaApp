@@ -33,11 +33,11 @@ public class CommandParserTest {
 
     @Test
     public void shouldReturnReturnBookCommand() {
-        assertTrue(CommandParser.parseCommand("return") instanceof ReturnBookCommand);
+        assertTrue(CommandParser.parseCommand("return 1") instanceof ReturnBookCommand);
     }
 
     @Test
     public void shouldReturnCheckoutCommand() {
-        assertTrue(CommandParser.parseCommand("CheckOut") instanceof CheckoutCommand);
+        assertTrue(CommandParser.parseCommand("CheckOut 1") instanceof CheckoutCommand);
     }
 }

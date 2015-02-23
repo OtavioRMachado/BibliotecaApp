@@ -22,8 +22,8 @@ public class ListBookTest {
         ListBooksCommand listBooksCommand = new ListBooksCommand();
         listBooksCommand.loadBookList(bookList);
         listBooksCommand.execute();
-        String expectedResult = "List of Biblioteca's available books:\nHarry Potter - J.K. Rowling (1991)\n" +
-                "Lord of The Rings - J.R.R Tolkien (1990)\n";
+        String expectedResult = "List of Biblioteca's available books:\n(1) Harry Potter - J.K. Rowling (1991)\n" +
+                "(2) Lord of The Rings - J.R.R Tolkien (1990)\n"+"To get a book, type CHECKOUT BOOK-NUMBER.\n";
         assertEquals(expectedResult, streamControl.getOutput());
         streamControl.cleanUpStreams();
     }

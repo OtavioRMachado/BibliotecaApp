@@ -1,6 +1,7 @@
 package com.thoughtworks.university.Biblioteca;
 
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.io.ByteArrayOutputStream;
 
@@ -11,7 +12,7 @@ public class BibliotecaAppTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
     @Test
-    public void ShouldWelcomeMeWhenIRunTheApp() {
+    public void shouldWelcomeMeWhenIRunTheApp() throws BookNotAvailableException {
         StreamControl stream = new StreamControl();
         stream.setUpOut();
         stream.setUpIn("Quit");
