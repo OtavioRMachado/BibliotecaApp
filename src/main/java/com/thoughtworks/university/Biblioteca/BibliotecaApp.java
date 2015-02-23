@@ -13,11 +13,15 @@ public class BibliotecaApp {
     protected static final String WELCOME_MESSAGE = "Welcome to our Virtual Bangalore Biblioteca. To see the available commands, please type OPTIONS";
     protected static String line;
     public static List<String> menuItems = new ArrayList<String>();
+    public static BookHandler availableBooks = new BookHandler();
+    public static BookHandler borrowedBooks = new BookHandler();
 
     public static void main(String args[]) {
         System.out.println(WELCOME_MESSAGE);
 
         loadMenu();
+        loadAvailableBooks();
+        loadBorrowedBooks();
         Command myCommand = getCommandFromLine();
         while(!(myCommand instanceof QuitCommand)) {
             loadCommand(myCommand);
@@ -26,12 +30,20 @@ public class BibliotecaApp {
         myCommand.execute();
     }
 
+    private static void loadBorrowedBooks() {
+
+    }
+
+    private static void loadAvailableBooks() {
+
+    }
+
     private static boolean loadCommand(Command myCommand) {
         if(myCommand instanceof CheckoutCommand || myCommand instanceof ReturnBookCommand) {
             // SET BOOK
         }
         else if(myCommand instanceof ListBooksCommand) {
-            // Load list of books
+            ((ListBooksCommand) myCommand).loadBookList(availableBooks);
         }
         myCommand.execute();
         return false;

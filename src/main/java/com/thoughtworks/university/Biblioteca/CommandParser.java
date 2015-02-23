@@ -1,7 +1,5 @@
 package com.thoughtworks.university.Biblioteca;
 
-import javax.swing.text.html.Option;
-
 public class CommandParser {
     public static Command parseCommand(String line) {
         if(line.toLowerCase().equals(OptionsCommand.getCommandName())) {
