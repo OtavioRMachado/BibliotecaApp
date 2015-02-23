@@ -42,4 +42,19 @@ public class BookHandlerTest {
         bookHandler.removeBook(sampleBook);
         assertEquals(1, bookList.size());
     }
+
+    @Test
+    public void shouldReturnBookById() {
+        bookHandler.addBook(sampleBook);
+        bookHandler.addBook(sampleBook2);
+        int bookID = sampleBook.getID();
+        assertEquals(sampleBook, bookHandler.getById(bookID));
+    }
+
+    @Test
+    public void shouldNotReturnBookBecauseIDIsWrong() {
+        bookHandler.addBook(sampleBook);
+        int bookID = 99;
+        assertEquals(null, bookHandler.getById(99));
+    }
 }

@@ -15,7 +15,7 @@ public class CheckoutCommand extends Command {
             borrowedBooks.addBook(desiredBook);
         }
         catch(BookNotAvailableException exception) {
-            System.out.println("Sorry, book not available");
+            throw new BookNotAvailableException();
         }
         catch(NullPointerException nullPointerExc) {
             new InvalidCommand().execute();
