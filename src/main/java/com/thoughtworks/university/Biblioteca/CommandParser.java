@@ -3,9 +3,9 @@ package com.thoughtworks.university.Biblioteca;
 import java.util.List;
 
 public class CommandParser {
-    public static Command parseCommand(String line) {
+    public static Command parseCommand(String line, BookHandler availableBooks, BookHandler borrowedBooks, List<String> menuItems) {
         if(line.toLowerCase().contains(OptionsCommand.getCommandName())) {
-            return new OptionsCommand();
+            return new OptionsCommand(menuItems);
         }
         else if(line.toLowerCase().contains(CheckoutCommand.getCommandName())) {
             String[] lineList = line.split(" ");

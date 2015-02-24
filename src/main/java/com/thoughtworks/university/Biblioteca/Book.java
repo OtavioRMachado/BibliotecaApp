@@ -8,9 +8,19 @@ public class Book {
     private int year;
     private boolean available;
 
+    public Book(String author, String title, int year) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+        this.available = true;
+        this.uniqueID = idCounter;
+        idCounter++;
+    }
+
     public boolean isAvailable() {
         return available;
     }
+
     public String getTitle() {
         return title;
     }
@@ -23,19 +33,9 @@ public class Book {
         return year;
     }
 
-    public Book(String author, String title, int year) {
-        this.title = title;
-        this.author = author;
-        this.year = year;
-        this.available = true;
-        this.uniqueID = idCounter;
-        idCounter++;
-    }
-
     public int getID() {
         return uniqueID;
     }
-
 
     public void checkOut() throws BookNotAvailableException {
         if(!isAvailable()) {

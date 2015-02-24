@@ -16,15 +16,14 @@ public class ListBookTest {
         bookList.addBook(sampleBook2);
     }
     @Test
-    public void shouldShowAvailableBooksList() {
+    public void shouldShowAvailableBooksList() throws BookNotAvailableException {
         StreamControl streamControl = new StreamControl();
         streamControl.setUpOut();
         ListBooksCommand listBooksCommand = new ListBooksCommand();
-        listBooksCommand.loadBookList(bookList);
-        listBooksCommand.execute();
+        listBooksCommand.loadCommand(bookList, new BookHandler());
         String expectedResult = "List of Biblioteca's available books:\n(1) Harry Potter - J.K. Rowling (1991)\n" +
-                "(2) Lord of The Rings - J.R.R Tolkien (1990)\n"+"To get a book, type CHECKOUT BOOK-NUMBER.\n";
-        assertEquals(expectedResult, streamControl.getOutput());
+                "(2) Lord of The Rings - J.R.R Tolkien (1990)\n"+"To get a book, type CHECKOUT BOOK-NUMBER.";
+        assertEquals(expectedResult, listBooksCommand.execute());
         streamControl.cleanUpStreams();
     }
 }

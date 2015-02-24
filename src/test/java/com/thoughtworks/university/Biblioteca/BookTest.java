@@ -9,10 +9,11 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class BookTest {
-    public Book book;
-    String title;
-    String author;
-    int date;
+    private Book book;
+    private String title;
+    private String author;
+    private int date;
+
     @Before
     public void setUp() {
         title = "Harry Potter and the Sorcerers' Stone";

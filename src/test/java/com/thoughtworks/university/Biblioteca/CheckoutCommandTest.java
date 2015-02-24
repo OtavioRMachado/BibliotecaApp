@@ -1,6 +1,5 @@
 package com.thoughtworks.university.Biblioteca;
 
-import com.sun.tools.javac.comp.Check;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
@@ -16,8 +15,7 @@ public class CheckoutCommandTest {
         BookHandler notAvailableBooks = new BookHandler();
         availableBooks.addBook(myBook);
         CheckoutCommand checkoutCommand = new CheckoutCommand(myBook.getID());
-        checkoutCommand.setHandlers(availableBooks, notAvailableBooks);
-        checkoutCommand.execute();
+        checkoutCommand.loadCommand(availableBooks, notAvailableBooks);
         assertFalse(availableBooks.getById(myBook.getID()) != null);
         assertTrue(notAvailableBooks.getById(myBook.getID()) != null);
     }
@@ -30,8 +28,7 @@ public class CheckoutCommandTest {
         BookHandler notAvailableBooks = new BookHandler();
         availableBooks.addBook(myBook);
         CheckoutCommand checkoutCommand = new CheckoutCommand(myBook.getID());
-        checkoutCommand.setHandlers(availableBooks, notAvailableBooks);
-        checkoutCommand.execute();
+        checkoutCommand.loadCommand(availableBooks, notAvailableBooks);
     }
     @Test(expected = NullPointerException.class)
     public void shouldNotCheckoutBookBecauseItDoesNotExist() throws BookNotAvailableException {
@@ -40,7 +37,7 @@ public class CheckoutCommandTest {
         BookHandler notAvailableBooks = new BookHandler();
         expectedException.expect(NullPointerException.class);
         CheckoutCommand checkoutCommand = new CheckoutCommand(99);
-        checkoutCommand.setHandlers(availableBooks, notAvailableBooks);
+        checkoutCommand.loadCommand(availableBooks, notAvailableBooks);
         checkoutCommand.execute();
     }
 }

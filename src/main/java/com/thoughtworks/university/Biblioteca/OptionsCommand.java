@@ -1,9 +1,12 @@
 package com.thoughtworks.university.Biblioteca;
 
+import java.util.List;
+
 public class OptionsCommand extends Command {
     protected static final String commandName = "options";
-    public OptionsCommand() {
-        //Command.visibleCommands.length()
+    private List<String> menuItems;
+    public OptionsCommand(List<String> menuItems) {
+        this.menuItems = menuItems;
     }
 
     public static String getCommandName() {
@@ -11,15 +14,20 @@ public class OptionsCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public String execute() {
         // Execute OptionsCommand
-        StringBuilder menuItems = new StringBuilder();
-        for (int i = 0; i < BibliotecaApp.menuItems.size(); i++) {
-            menuItems.append(BibliotecaApp.menuItems.get(i));
-            if(i < BibliotecaApp.menuItems.size() - 1) {
-                menuItems.append(", ");
+        StringBuilder menuItemsString = new StringBuilder();
+        for (int i = 0; i < menuItems.size(); i++) {
+            menuItemsString.append(menuItems.get(i));
+            if(i < menuItems.size() - 1) {
+                menuItemsString.append(", ");
             }
         }
-        System.out.println("Menu commands: " + menuItems);
+        return "Menu commands: " + menuItemsString;
+    }
+
+    @Override
+    public String loadCommand(BookHandler availableBooks, BookHandler borrowedBooks) throws BookNotAvailableException {
+        return execute();
     }
 }

@@ -6,25 +6,28 @@ public class ReturnBookCommand extends Command {
     private BookHandler borrowedBooks;
     private Book desiredBook;
     private int bookID;
+    private final String successMessage = "Thank you for returning the book.";
+    private final String failureMessage = "That book is not available.";
 
     @Override
-    public void execute() {
+    public String execute() {
         try {
             desiredBook = borrowedBooks.getById(bookID);
             desiredBook.returnBook();
             borrowedBooks.removeBook(desiredBook);
             availableBooks.addBook(desiredBook);
-            System.out.println("Thank you for returning the book.");
         }
         catch(NullPointerException nullPointerExc) {
-            System.out.println("That book is not available.");
+            return failureMessage;
         }
+        return successMessage;
     }
 
-    public void setHandlers(BookHandler availableBooks, BookHandler borrowedBooks)
-    {
+    @Override
+    public String loadCommand(BookHandler availableBooks, BookHandler borrowedBooks) throws BookNotAvailableException {
         this.availableBooks = availableBooks;
         this.borrowedBooks = borrowedBooks;
+        return execute();
     }
 
     public ReturnBookCommand(int value) {

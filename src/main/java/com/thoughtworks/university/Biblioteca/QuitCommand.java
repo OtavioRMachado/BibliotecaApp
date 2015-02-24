@@ -4,8 +4,13 @@ public class QuitCommand extends Command {
     public static String commandName = "quit";
     public final String message = "Goodbye!";
     @Override
-    public void execute() {
-        System.out.print(message);
+    protected String execute() {
+        return message;
+    }
+
+    @Override
+    public String loadCommand(BookHandler availableBooks, BookHandler borrowedBooks) throws BookNotAvailableException {
+        return execute();
     }
 
     public static String getCommandName() {

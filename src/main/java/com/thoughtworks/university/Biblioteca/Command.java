@@ -1,8 +1,6 @@
 package com.thoughtworks.university.Biblioteca;
 
-import org.omg.CORBA.DynAnyPackage.Invalid;
-
 public abstract class Command {
-    public abstract void execute() throws BookNotAvailableException;
-
+    protected abstract String execute() throws BookNotAvailableException;
+    public abstract String loadCommand(BookHandler availableBooks, BookHandler borrowedBooks) throws BookNotAvailableException;
 }

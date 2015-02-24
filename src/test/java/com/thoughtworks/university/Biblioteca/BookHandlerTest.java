@@ -8,9 +8,9 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class BookHandlerTest {
-    public BookHandler bookHandler;
-    public Book sampleBook;
-    public Book sampleBook2;
+    private BookHandler bookHandler;
+    private Book sampleBook;
+    private Book sampleBook2;
     @Before
     public void setUp() {
         bookHandler = new BookHandler();
@@ -30,7 +30,7 @@ public class BookHandlerTest {
     public void shouldShowFirstBooksAuthorWhenNewBookIsAdded() {
         bookHandler.addBook(sampleBook);
         List<Book> bookList = bookHandler.getBooks();
-        assertEquals(bookList.get(0).getTitle(), "B");
+        assertEquals(bookList.get(0), sampleBook);
     }
 
     @Test
@@ -41,6 +41,7 @@ public class BookHandlerTest {
         assertEquals(2, bookList.size());
         bookHandler.removeBook(sampleBook);
         assertEquals(1, bookList.size());
+        assertEquals(bookList.get(0), sampleBook2);
     }
 
     @Test
@@ -55,6 +56,6 @@ public class BookHandlerTest {
     public void shouldNotReturnBookBecauseIDIsWrong() {
         bookHandler.addBook(sampleBook);
         int bookID = 99;
-        assertEquals(null, bookHandler.getById(99));
+        assertEquals(null, bookHandler.getById(bookID));
     }
 }
