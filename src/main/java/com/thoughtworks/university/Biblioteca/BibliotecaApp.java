@@ -13,9 +13,9 @@ public class BibliotecaApp {
         String line;
         String commandMessage;
         List<String> menuItems = new ArrayList<String>();
-        ItemHandler availableBooks = new ItemHandler();
-        ItemHandler borrowedBooks = new ItemHandler();
-        User loggedUser = null;
+        List<LibraryItem> availableBooks = new ArrayList<LibraryItem>();
+        List<LibraryItem> borrowedBooks = new ArrayList<LibraryItem>();
+        User loggedUser = new User();
 
         System.out.println(WELCOME_MESSAGE);
 
@@ -32,13 +32,13 @@ public class BibliotecaApp {
 
     }
 
-    private static void loadBorrowedBooks(ItemHandler borrowedBooks) {
+    private static void loadBorrowedBooks(List<LibraryItem> borrowedBooks) {
         return;
     }
 
-    private static void loadAvailableBooks(ItemHandler availableBooks) {
+    private static void loadAvailableBooks(List<LibraryItem> availableBooks) {
         Book exampleBook = new Book("Kathy Sierra, Bert Bates", "Head First Java 2nd Edition", 2005);
-        availableBooks.addItem(exampleBook);
+        availableBooks.add(exampleBook);
     }
 
     private static void loadMenu(List<String> menuItems) {

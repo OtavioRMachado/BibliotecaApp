@@ -10,4 +10,9 @@ public class Book extends LibraryItem {
         return author;
     }
 
+
+    @Override
+    public String toString() {
+        return String.format("(%d) %s - %s (%d)", uniqueID, title, author, year);
+    }
 }

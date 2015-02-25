@@ -42,4 +42,19 @@ public class CommandParserTest {
     public void shouldReturnCheckoutCommand() {
         assertTrue(CommandParser.parseCommand("CheckOut 1") instanceof CheckoutCommand);
     }
+
+    @Test
+    public void shouldReturnListBooksCommand() {
+        assertTrue(CommandParser.parseCommand("list books") instanceof ListBooksCommand);
+    }
+
+    @Test
+    public void shouldReturnLoginCommand() {
+        assertTrue(CommandParser.parseCommand("login 123-4567 12345") instanceof LoginCommand);
+    }
+
+    @Test
+    public void shouldReturnListMoviesCommand() {
+        assertTrue(CommandParser.parseCommand("list movies") instanceof ListMoviesCommand);
+    }
 }

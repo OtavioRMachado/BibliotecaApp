@@ -38,7 +38,7 @@ public class LibraryItem {
         if(!available) {
             throw new LibraryItemNotAvailableException();
         }
-        if(loggedUser == null) {
+        if(loggedUser == null || loggedUser.getLibraryNo() == null) {
             throw new UserNotLoggedInException();
         }
         this.available = false;
@@ -47,7 +47,7 @@ public class LibraryItem {
     }
 
     public void returnItem(User loggedUser) throws UserNotLoggedInException {
-        if(loggedUser == null) {
+        if(loggedUser == null || loggedUser.getLibraryNo() == null) {
             throw new UserNotLoggedInException();
         }
         this.whoHas = null;

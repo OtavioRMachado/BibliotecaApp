@@ -34,4 +34,10 @@ public class Movie extends LibraryItem {
         }
         this.rating = rating;
     }
+
+
+    @Override
+    public String toString() {
+        return String.format("(%d) %s - %s (%d) - %s", getID(), getTitle(), getDirector(), getYear(), getRating());
+    }
 }

@@ -21,7 +21,8 @@ public class OptionsCommandTest {
                 menuCommands.append(", ");
             }
         }
-        User loggedUser = new User("Otavio", "omachado@thoughtworks.com", "05381588006");
-        assertEquals("Menu commands: " + menuCommands, optionsCommand.loadCommand(new ItemHandler(), new ItemHandler(), menuItems, loggedUser ));
+        User loggedUser = new User();
+        loggedUser.setUser("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+        assertEquals("Menu commands: " + menuCommands, optionsCommand.loadCommand(new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>(), menuItems, loggedUser ));
     }
 }

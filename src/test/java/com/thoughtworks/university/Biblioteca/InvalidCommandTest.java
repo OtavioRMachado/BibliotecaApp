@@ -10,6 +10,6 @@ public class InvalidCommandTest {
     @Test
     public void shouldReturnInvalidCommandMessageWhenExecuted() throws LibraryItemNotAvailableException {
         InvalidCommand invalidCommand = new InvalidCommand();
-        assertEquals("Error: Invalid command! To see commands, type OPTIONS", invalidCommand.loadCommand(new ItemHandler(), new ItemHandler(), new ArrayList<String>(), null));
+        assertEquals("Error: Invalid command! To see commands, type OPTIONS", invalidCommand.loadCommand(new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>(), new ArrayList<String>(), null));
     }
 }

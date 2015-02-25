@@ -21,7 +21,8 @@ public class BookTest {
         author = "J.K. Rowling";
         date = 1991;
         book = new Book(author, title, date);
-        loggedUser = new User("Otavio", "omachado@thoughtworks.com", "05381588006");
+        loggedUser = new User();
+        loggedUser.setUser("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
     }
     @Test
     public void shouldGetBookName() {
@@ -62,7 +63,8 @@ public class BookTest {
 
     @Test
     public void shouldReturnWhoIsWithTheBook() throws LibraryItemNotAvailableException, UserNotLoggedInException {
-        User me = new User("Otavio", "omachado@thoughtworks.com", "05381588006");
+        User me = new User();
+        me.setUser("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
         book.checkOut(me);
         assertEquals(me, book.WhoHas());
     }

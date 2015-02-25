@@ -23,7 +23,8 @@ public class MovieTest {
         rating = 9.5;
         myMovie = new Movie(title, year, director);
         myMovie.setRating(rating);
-        loggedUser = new User("Otavio", "omachado@thoughtworks.com", "05381588006");
+        loggedUser = new User();
+        loggedUser.setUser("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
     }
     @Test
     public void shouldReturnMovieTitle() {

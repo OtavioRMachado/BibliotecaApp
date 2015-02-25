@@ -10,7 +10,7 @@ public class InvalidCommand extends Command {
     }
 
     @Override
-    public String loadCommand(ItemHandler availableBooks, ItemHandler borrowedBooks, List<String> menuItems, User loggedUser) throws LibraryItemNotAvailableException {
+    public String loadCommand(List<LibraryItem> availableBooks, List<LibraryItem> borrowedBooks, List<String> menuItems, User loggedUser) throws LibraryItemNotAvailableException {
         return execute();
     }
 }

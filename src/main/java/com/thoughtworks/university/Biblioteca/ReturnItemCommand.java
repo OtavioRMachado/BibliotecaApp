@@ -4,8 +4,8 @@ import java.util.List;
 
 public class ReturnItemCommand extends Command {
     public static String commandName = "return";
-    private ItemHandler availableBooks;
-    private ItemHandler borrowedBooks;
+    private List<LibraryItem> availableBooks;
+    private List<LibraryItem> borrowedBooks;
     private Book desiredBook;
     private int bookID;
     private User loggedUser;
@@ -15,10 +15,10 @@ public class ReturnItemCommand extends Command {
     @Override
     public String execute() {
         try {
-            desiredBook = (Book) borrowedBooks.getById(bookID);
+            desiredBook = getBookById(bookID);
             desiredBook.returnItem(loggedUser);
-            borrowedBooks.removeItem(desiredBook);
-            availableBooks.addItem(desiredBook);
+            borrowedBooks.remove(desiredBook);
+            availableBooks.add(desiredBook);
         }
         catch(NullPointerException nullPointerExc) {
             return failureMessage;
@@ -28,8 +28,18 @@ public class ReturnItemCommand extends Command {
         return successMessage;
     }
 
+    private Book getBookById(int desiredID) {
+        for(LibraryItem libraryItem : borrowedBooks) {
+            if(libraryItem.getID() == desiredID) {
+                return (Book) libraryItem;
+            }
+        }
+
+        return null;
+    }
+
     @Override
-    public String loadCommand(ItemHandler availableBooks, ItemHandler borrowedBooks, List<String> menuItems, User loggedUser) throws LibraryItemNotAvailableException {
+    public String loadCommand(List<LibraryItem> availableBooks, List<LibraryItem> borrowedBooks, List<String> menuItems, User loggedUser) throws LibraryItemNotAvailableException {
         this.availableBooks = availableBooks;
         this.borrowedBooks = borrowedBooks;
         this.loggedUser = loggedUser;
