@@ -3,11 +3,11 @@ package com.thoughtworks.university.Biblioteca;
 import java.util.List;
 
 public class CommandParser {
-    public static Command parseCommand(String line, BookHandler availableBooks, BookHandler borrowedBooks, List<String> menuItems) {
-        if(line.toLowerCase().contains(OptionsCommand.getCommandName())) {
+    public static Command parseCommand(String line, List<String> menuItems) {
+        if(isOptionsCommand(line)) {
             return new OptionsCommand(menuItems);
         }
-        else if(line.toLowerCase().contains(CheckoutCommand.getCommandName())) {
+        if(isCheckoutCommand(line)) {
             String[] lineList = line.split(" ");
             int value;
             try {
@@ -17,7 +17,7 @@ public class CommandParser {
             }
             return new CheckoutCommand(value);
         }
-        else if(line.toLowerCase().contains(ReturnBookCommand.getCommandName())) {
+        if(isReturnBookCommand(line)) {
             String[] lineList = line.split(" ");
             int value;
             try {
@@ -27,14 +27,32 @@ public class CommandParser {
             }
             return new ReturnBookCommand(value);
         }
-        else if(line.toLowerCase().contains(QuitCommand.getCommandName())) {
+        if(isQuitCommand(line)) {
             return new QuitCommand();
         }
-        else if(line.toLowerCase().contains(ListBooksCommand.getCommandName())) {
+        if(isListBooksCommand(line)) {
             return new ListBooksCommand();
         }
-        else {
-            return new InvalidCommand();
-        }
+        return new InvalidCommand();
+    }
+
+    private static boolean isListBooksCommand(String line) {
+        return line.toLowerCase().contains(ListBooksCommand.getCommandName());
+    }
+
+    private static boolean isQuitCommand(String line) {
+        return line.toLowerCase().contains(QuitCommand.getCommandName());
+    }
+
+    private static boolean isReturnBookCommand(String line) {
+        return line.toLowerCase().contains(ReturnBookCommand.getCommandName());
+    }
+
+    private static boolean isCheckoutCommand(String line) {
+        return line.toLowerCase().contains(CheckoutCommand.getCommandName());
+    }
+
+    private static boolean isOptionsCommand(String line) {
+        return line.toLowerCase().contains(OptionsCommand.getCommandName());
     }
 }

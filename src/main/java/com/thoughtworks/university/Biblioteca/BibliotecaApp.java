@@ -48,7 +48,7 @@ public class BibliotecaApp {
     private static Command getCommandFromLine(BookHandler availableBooks, BookHandler borrowedBooks, List<String> menuItems) {
         String line;
         line = readLine();
-        return CommandParser.parseCommand(line, availableBooks, borrowedBooks, menuItems);
+        return CommandParser.parseCommand(line, menuItems);
     }
 
     protected static String readLine() {
