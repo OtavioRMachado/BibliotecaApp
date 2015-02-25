@@ -1,11 +1,9 @@
 package com.thoughtworks.university.Biblioteca;
 
-import java.util.List;
-
 public class CommandParser {
-    public static Command parseCommand(String line, List<String> menuItems) {
+    public static Command parseCommand(String line) {
         if(isOptionsCommand(line)) {
-            return new OptionsCommand(menuItems);
+            return new OptionsCommand();
         }
         if(isCheckoutCommand(line)) {
             String[] lineList = line.split(" ");
@@ -25,7 +23,7 @@ public class CommandParser {
             } catch(NumberFormatException exception) {
                 return new InvalidCommand();
             }
-            return new ReturnBookCommand(value);
+            return new ReturnItemCommand(value);
         }
         if(isQuitCommand(line)) {
             return new QuitCommand();
@@ -45,7 +43,7 @@ public class CommandParser {
     }
 
     private static boolean isReturnBookCommand(String line) {
-        return line.toLowerCase().contains(ReturnBookCommand.getCommandName());
+        return line.toLowerCase().contains(ReturnItemCommand.getCommandName());
     }
 
     private static boolean isCheckoutCommand(String line) {

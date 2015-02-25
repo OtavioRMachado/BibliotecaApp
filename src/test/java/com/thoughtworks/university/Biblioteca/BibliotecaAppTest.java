@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 
 public class BibliotecaAppTest {
     @Test
-    public void shouldWelcomeMeWhenIRunTheApp() throws BookNotAvailableException {
+    public void shouldWelcomeMeWhenIRunTheApp() throws LibraryItemNotAvailableException, UserNotLoggedInException {
         StreamControl stream = new StreamControl();
         stream.setUpOut();
         stream.setUpIn("Quit");
