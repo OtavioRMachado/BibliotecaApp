@@ -13,6 +13,7 @@ public class BookTest {
     private String title;
     private String author;
     private int date;
+    private User loggedUser;
 
     @Before
     public void setUp() {
@@ -20,6 +21,7 @@ public class BookTest {
         author = "J.K. Rowling";
         date = 1991;
         book = new Book(author, title, date);
+        loggedUser = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
     }
     @Test
     public void shouldGetBookName() {
@@ -37,24 +39,36 @@ public class BookTest {
     }
 
     @Test
-    public void bookShouldBeAvailable() throws BookNotAvailableException {
+    public void bookShouldBeAvailable() throws LibraryItemNotAvailableException, UserNotLoggedInException {
         assertEquals(true, book.isAvailable());
-        book.checkOut();
+        book.checkOut(loggedUser);
     }
 
-    @Test(expected = BookNotAvailableException.class)
-    public void bookShouldNotBeAvailable() throws BookNotAvailableException {
+    @Test(expected = LibraryItemNotAvailableException.class)
+    public void bookShouldNotBeAvailable() throws LibraryItemNotAvailableException, UserNotLoggedInException {
         ExpectedException exception = ExpectedException.none();
-        exception.expect(BookNotAvailableException.class);
-        book.checkOut();
-        book.checkOut();
+        exception.expect(LibraryItemNotAvailableException.class);
+        book.checkOut(loggedUser);
+        book.checkOut(loggedUser);
     }
 
     @Test
-    public void shouldReturnBookSuccessfully() throws BookNotAvailableException {
-        book.checkOut();
+    public void shouldReturnBookSuccessfully() throws LibraryItemNotAvailableException, UserNotLoggedInException {
+        book.checkOut(loggedUser);
         assertFalse(book.isAvailable());
-        book.returnBook();
+        book.returnItem(loggedUser);
         assertTrue(book.isAvailable());
+    }
+
+    @Test
+    public void shouldReturnWhoIsWithTheBook() throws LibraryItemNotAvailableException, UserNotLoggedInException {
+        User me = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+        book.checkOut(me);
+        assertEquals(me, book.WhoHas());
+    }
+
+    @Test(expected = UserNotLoggedInException.class)
+    public void shouldCauseExceptionWhenUserIsNotLoggedIn() throws LibraryItemNotAvailableException, UserNotLoggedInException {
+        book.checkOut(null);
     }
 }

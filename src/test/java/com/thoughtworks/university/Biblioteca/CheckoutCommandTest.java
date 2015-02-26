@@ -3,41 +3,52 @@ package com.thoughtworks.university.Biblioteca;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 
 public class CheckoutCommandTest {
     @Test
-    public void shouldCheckoutBook() throws BookNotAvailableException {
-        Book myBook = new Book("JKRowling", "HP", 1991);
-        BookHandler availableBooks = new BookHandler();
-        BookHandler notAvailableBooks = new BookHandler();
-        availableBooks.addBook(myBook);
-        CheckoutCommand checkoutCommand = new CheckoutCommand(myBook.getID());
-        checkoutCommand.loadCommand(availableBooks, notAvailableBooks);
-        assertFalse(availableBooks.getById(myBook.getID()) != null);
-        assertTrue(notAvailableBooks.getById(myBook.getID()) != null);
+    public void shouldCheckoutBook() throws LibraryItemNotAvailableException, UserNotLoggedInException {
+        List<LibraryItem> availableBooks = new ArrayList<LibraryItem>();
+        List<LibraryItem> notAvailableBooks = new ArrayList<LibraryItem>();
+
+        Book harryPotter = new Book("JKRowling", "HP", 1991);
+        availableBooks.add(harryPotter);
+
+        CheckoutCommand checkoutCommand = new CheckoutCommand(harryPotter.getID());
+        User user = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+
+        ArrayList<String> menuItems = new ArrayList<String>();
+        checkoutCommand.loadCommand(availableBooks, notAvailableBooks, menuItems, user);
+
+        assertFalse(availableBooks.contains(harryPotter));
+        assertTrue(notAvailableBooks.contains(harryPotter));
     }
 
-    @Test(expected = BookNotAvailableException.class)
-    public void shouldNotCheckoutBookBecauseItIsNotAvailable() throws BookNotAvailableException {
+    @Test(expected = LibraryItemNotAvailableException.class)
+    public void shouldNotCheckoutBookBecauseItIsNotAvailable() throws LibraryItemNotAvailableException, UserNotLoggedInException {
         Book myBook = new Book("JKRowling", "HP", 1991);
-        myBook.checkOut();
-        BookHandler availableBooks = new BookHandler();
-        BookHandler notAvailableBooks = new BookHandler();
-        availableBooks.addBook(myBook);
+        User loggedUser = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+        myBook.checkOut(loggedUser);
+        List<LibraryItem> availableBooks = new ArrayList<LibraryItem>();
+        List<LibraryItem> notAvailableBooks = new ArrayList<LibraryItem>();
+        availableBooks.add(myBook);
         CheckoutCommand checkoutCommand = new CheckoutCommand(myBook.getID());
-        checkoutCommand.loadCommand(availableBooks, notAvailableBooks);
+        checkoutCommand.loadCommand(availableBooks, notAvailableBooks, new ArrayList<String>(), loggedUser);
     }
-    @Test(expected = NullPointerException.class)
-    public void shouldNotCheckoutBookBecauseItDoesNotExist() throws BookNotAvailableException {
+    @Test
+    public void shouldNotCheckoutBookBecauseItDoesNotExist() throws LibraryItemNotAvailableException, UserNotLoggedInException {
         ExpectedException expectedException = ExpectedException.none();
-        BookHandler availableBooks = new BookHandler();
-        BookHandler notAvailableBooks = new BookHandler();
+        User loggedUser = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+        List<LibraryItem> availableBooks = new ArrayList<LibraryItem>();
+        List<LibraryItem> notAvailableBooks = new ArrayList<LibraryItem>();
         expectedException.expect(NullPointerException.class);
         CheckoutCommand checkoutCommand = new CheckoutCommand(99);
-        checkoutCommand.loadCommand(availableBooks, notAvailableBooks);
-        checkoutCommand.execute();
+        assertEquals(new InvalidCommand().execute(), checkoutCommand.loadCommand(availableBooks, notAvailableBooks, new ArrayList<String>(), loggedUser));
     }
 }

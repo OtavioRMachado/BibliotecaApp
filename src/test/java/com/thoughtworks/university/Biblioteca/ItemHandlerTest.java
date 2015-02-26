@@ -7,13 +7,13 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class BookHandlerTest {
-    private BookHandler bookHandler;
+public class ItemHandlerTest {
+    private ItemHandler itemHandler;
     private Book sampleBook;
     private Book sampleBook2;
     @Before
     public void setUp() {
-        bookHandler = new BookHandler();
+        itemHandler = new ItemHandler();
         sampleBook = new Book("A", "B", 2015);
         sampleBook2 = new Book("B", "A", 5102);
 
@@ -21,41 +21,41 @@ public class BookHandlerTest {
 
     @Test
     public void shouldStartEmptyListedBook() {
-        List<Book> bookList = bookHandler.getBooks();
+        List<LibraryItem> bookList = itemHandler.getLibraryItems();
         assertEquals(0, bookList.size());
 
     }
 
     @Test
     public void shouldShowFirstBooksAuthorWhenNewBookIsAdded() {
-        bookHandler.addBook(sampleBook);
-        List<Book> bookList = bookHandler.getBooks();
+        itemHandler.addItem(sampleBook);
+        List<LibraryItem> bookList = itemHandler.getLibraryItems();
         assertEquals(bookList.get(0), sampleBook);
     }
 
     @Test
     public void shouldShowOneBookInListAfterAddingTwoBooksAndDeletingOneOfThem() {
-        bookHandler.addBook(sampleBook);
-        bookHandler.addBook(sampleBook2);
-        List<Book> bookList = bookHandler.getBooks();
+        itemHandler.addItem(sampleBook);
+        itemHandler.addItem(sampleBook2);
+        List<LibraryItem> bookList = itemHandler.getLibraryItems();
         assertEquals(2, bookList.size());
-        bookHandler.removeBook(sampleBook);
+        itemHandler.removeItem(sampleBook);
         assertEquals(1, bookList.size());
         assertEquals(bookList.get(0), sampleBook2);
     }
 
     @Test
     public void shouldReturnBookById() {
-        bookHandler.addBook(sampleBook);
-        bookHandler.addBook(sampleBook2);
+        itemHandler.addItem(sampleBook);
+        itemHandler.addItem(sampleBook2);
         int bookID = sampleBook.getID();
-        assertEquals(sampleBook, bookHandler.getById(bookID));
+        assertEquals(sampleBook, itemHandler.getById(bookID));
     }
 
     @Test
     public void shouldNotReturnBookBecauseIDIsWrong() {
-        bookHandler.addBook(sampleBook);
+        itemHandler.addItem(sampleBook);
         int bookID = 99;
-        assertEquals(null, bookHandler.getById(bookID));
+        assertEquals(null, itemHandler.getById(bookID));
     }
 }

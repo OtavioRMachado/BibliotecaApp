@@ -13,7 +13,7 @@ public class QuitCommandTest {
     private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
     @Test
-    public void shouldSendMeAFarewell() throws BookNotAvailableException {
+    public void shouldSendMeAFarewell() throws LibraryItemNotAvailableException, UserNotLoggedInException {
         Command quit = new QuitCommand();
         assertEquals("Goodbye!", quit.execute());
     }

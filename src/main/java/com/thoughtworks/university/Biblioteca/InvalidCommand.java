@@ -1,5 +1,7 @@
 package com.thoughtworks.university.Biblioteca;
 
+import java.util.List;
+
 public class InvalidCommand extends Command {
     protected final String message = "Error: Invalid command! To see commands, type OPTIONS";
     @Override
@@ -8,7 +10,7 @@ public class InvalidCommand extends Command {
     }
 
     @Override
-    public String loadCommand(BookHandler availableBooks, BookHandler borrowedBooks) throws BookNotAvailableException {
+    public String loadCommand(List<LibraryItem> availableBooks, List<LibraryItem> borrowedBooks, List<String> menuItems, User loggedUser) throws LibraryItemNotAvailableException {
         return execute();
     }
 }

@@ -5,9 +5,7 @@ import java.util.List;
 public class OptionsCommand extends Command {
     protected static final String commandName = "options";
     private List<String> menuItems;
-    public OptionsCommand(List<String> menuItems) {
-        this.menuItems = menuItems;
-    }
+
 
     public static String getCommandName() {
         return commandName;
@@ -27,7 +25,8 @@ public class OptionsCommand extends Command {
     }
 
     @Override
-    public String loadCommand(BookHandler availableBooks, BookHandler borrowedBooks) throws BookNotAvailableException {
+    public String loadCommand(List<LibraryItem> availableBooks, List<LibraryItem> borrowedBooks, List<String> menuItems, User loggedUser) throws LibraryItemNotAvailableException {
+        this.menuItems = menuItems;
         return execute();
     }
 }
