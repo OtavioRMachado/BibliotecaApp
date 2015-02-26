@@ -14,7 +14,6 @@ public class LoginCommandTest {
         loginCommand.loadCommand(new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>(), new ArrayList<String>(), loggedUser);
         assertTrue(loggedUser.getName() != "");
     }
-<<<<<<< HEAD
 
     @Test
     public void shouldNotLogInAndTellUserIsWrong() throws UserNotLoggedInException, LibraryItemNotAvailableException {
@@ -23,6 +22,4 @@ public class LoginCommandTest {
         loginCommand.loadCommand(new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>(), new ArrayList<String>(), loggedUser);
         assertTrue(loggedUser.getName() == "");
     }
-=======
->>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
 }

@@ -10,8 +10,6 @@ public class Book extends LibraryItem {
         return author;
     }
 
-<<<<<<< HEAD
-
     @Override
     public String toString() {
         return String.format("(%d) %s - %s (%d)", uniqueID, title, author, year);
@@ -20,11 +18,5 @@ public class Book extends LibraryItem {
     @Override
     public String getClassName() {
         return "Book";
-=======
-
-    @Override
-    public String toString() {
-        return String.format("(%d) %s - %s (%d)", uniqueID, title, author, year);
->>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
     }
 }

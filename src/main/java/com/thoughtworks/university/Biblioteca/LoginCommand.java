@@ -17,17 +17,12 @@ public class LoginCommand extends Command {
     @Override
     protected String execute() throws LibraryItemNotAvailableException, UserNotLoggedInException {
         loggedUser = UsersHandler.log(libraryNo, password);
-<<<<<<< HEAD
         return loggedUser.getLibraryNo() == ""? LOGIN_FAIL : LOGIN_SUCCESS;
-=======
-        return loggedUser == null? LOGIN_FAIL : LOGIN_SUCCESS;
->>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
     }
 
     @Override
     public String loadCommand(List<LibraryItem> availableBooks, List<LibraryItem> borrowedBooks, List<String> menuItems, User loggedUser) throws LibraryItemNotAvailableException, UserNotLoggedInException {
         String result = execute();
-<<<<<<< HEAD
         if(result == LOGIN_SUCCESS) {
             loggedUser.setName(this.loggedUser.getName());
             loggedUser.setPhone(this.loggedUser.getPhone());
@@ -45,15 +40,6 @@ public class LoginCommand extends Command {
         return;
     }
 
-=======
-        loggedUser.setName(this.loggedUser.getName());
-        loggedUser.setPhone(this.loggedUser.getPhone());
-        loggedUser.setLibraryNo(this.loggedUser.getLibraryNo());
-        loggedUser.setEmail(this.loggedUser.getEmail());
-        return result;
-    }
-
->>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
     public static String getCommandName() {
         return commandName;
     }

@@ -56,13 +56,10 @@ public class CommandParserTest {
     @Test
     public void shouldReturnListMoviesCommand() {
         assertTrue(CommandParser.parseCommand("list movies") instanceof ListMoviesCommand);
-<<<<<<< HEAD
     }
 
     @Test
     public void shouldReturnUserProfileCommand() {
         assertTrue(CommandParser.parseCommand("profile") instanceof UserProfileCommand);
-=======
->>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
     }
 }
