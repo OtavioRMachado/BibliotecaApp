@@ -8,47 +8,50 @@ import java.util.List;
 
 public class BibliotecaApp {
 
-    public static void main(String args[]) throws BookNotAvailableException {
+    public static void main(String args[]) throws LibraryItemNotAvailableException, UserNotLoggedInException {
         final String WELCOME_MESSAGE = "Welcome to our Virtual Bangalore Biblioteca. To see the available commands, please type OPTIONS";
-        String line;
         String commandMessage;
         List<String> menuItems = new ArrayList<String>();
-        BookHandler availableBooks = new BookHandler();
-        BookHandler borrowedBooks = new BookHandler();
+        List<LibraryItem> availableItems = new ArrayList<LibraryItem>();
+        List<LibraryItem> borrowedItems = new ArrayList<LibraryItem>();
+        User loggedUser = new AnonymousUser();
 
         System.out.println(WELCOME_MESSAGE);
 
         loadMenu(menuItems);
-        loadAvailableBooks(availableBooks);
-        loadBorrowedBooks(borrowedBooks);
+        loadAvailableItems(availableItems);
+        loadBorrowedItems(borrowedItems);
 
-        Command myCommand = getCommandFromLine(availableBooks, borrowedBooks, menuItems);
-        while(!(myCommand instanceof QuitCommand)) {
-            commandMessage = myCommand.loadCommand(availableBooks, borrowedBooks);
+        Command myCommand;
+        do {
+            myCommand = getCommandFromLine();
+            commandMessage = myCommand.loadCommand(availableItems, borrowedItems, menuItems, loggedUser);
             System.out.println(commandMessage);
-            myCommand = getCommandFromLine(availableBooks, borrowedBooks, menuItems);
-        }
-        commandMessage = myCommand.loadCommand(availableBooks, borrowedBooks);
-        System.out.println(commandMessage);
+        } while(!(myCommand instanceof QuitCommand));
+
     }
 
-    private static void loadBorrowedBooks(BookHandler borrowedBooks) {
+    private static void loadBorrowedItems(List<LibraryItem> borrowedItems) {
         return;
     }
 
-    private static void loadAvailableBooks(BookHandler availableBooks) {
+    private static void loadAvailableItems(List<LibraryItem> availableItems) {
         Book exampleBook = new Book("Kathy Sierra, Bert Bates", "Head First Java 2nd Edition", 2005);
-        availableBooks.addBook(exampleBook);
+        Movie exampleMovie = new Movie("Silence of the Lambs", 1991, "Jonathan Demme");
+        availableItems.add(exampleBook);
+        availableItems.add(exampleMovie);
     }
 
     private static void loadMenu(List<String> menuItems) {
-        menuItems.add(ListBooksCommand.command);
+        menuItems.add(ListBooksCommand.getCommandName());
+        menuItems.add(ListMoviesCommand.getCommandName());
+        menuItems.add(LoginCommand.getCommandName());
     }
 
-    private static Command getCommandFromLine(BookHandler availableBooks, BookHandler borrowedBooks, List<String> menuItems) {
+    private static Command getCommandFromLine() {
         String line;
         line = readLine();
-        return CommandParser.parseCommand(line, menuItems);
+        return CommandParser.parseCommand(line);
     }
 
     protected static String readLine() {

@@ -18,28 +18,48 @@ public class CommandParserTest {
 
     @Test
     public void shouldReturnInvalidCommand() {
-        assertTrue(CommandParser.parseCommand("ugabuga", menuItems) instanceof InvalidCommand);
+        assertTrue(CommandParser.parseCommand("ugabuga") instanceof InvalidCommand);
     }
 
     @Test
     public void shouldReturnOptionsCommand() {
-        assertTrue(CommandParser.parseCommand("options", menuItems) instanceof OptionsCommand);
-        assertTrue(CommandParser.parseCommand("OPTIONS", menuItems) instanceof OptionsCommand);
+        assertTrue(CommandParser.parseCommand("options") instanceof OptionsCommand);
+        assertTrue(CommandParser.parseCommand("OPTIONS") instanceof OptionsCommand);
     }
 
     @Test
     public void shouldReturnQuitCommand() {
-        assertTrue(CommandParser.parseCommand("quit", menuItems) instanceof QuitCommand);
-        assertTrue(CommandParser.parseCommand("QUIT", menuItems) instanceof QuitCommand);
+        assertTrue(CommandParser.parseCommand("quit") instanceof QuitCommand);
+        assertTrue(CommandParser.parseCommand("QUIT") instanceof QuitCommand);
     }
 
     @Test
     public void shouldReturnReturnBookCommand() {
-        assertTrue(CommandParser.parseCommand("return 1", menuItems) instanceof ReturnBookCommand);
+        assertTrue(CommandParser.parseCommand("return 1") instanceof ReturnItemCommand);
     }
 
     @Test
     public void shouldReturnCheckoutCommand() {
-        assertTrue(CommandParser.parseCommand("CheckOut 1", menuItems) instanceof CheckoutCommand);
+        assertTrue(CommandParser.parseCommand("CheckOut 1") instanceof CheckoutCommand);
+    }
+
+    @Test
+    public void shouldReturnListBooksCommand() {
+        assertTrue(CommandParser.parseCommand("list books") instanceof ListBooksCommand);
+    }
+
+    @Test
+    public void shouldReturnLoginCommand() {
+        assertTrue(CommandParser.parseCommand("login 123-4567 12345") instanceof LoginCommand);
+    }
+
+    @Test
+    public void shouldReturnListMoviesCommand() {
+        assertTrue(CommandParser.parseCommand("list movies") instanceof ListMoviesCommand);
+    }
+
+    @Test
+    public void shouldReturnUserProfileCommand() {
+        assertTrue(CommandParser.parseCommand("profile") instanceof UserProfileCommand);
     }
 }

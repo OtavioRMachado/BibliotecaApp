@@ -1,5 +1,7 @@
 package com.thoughtworks.university.Biblioteca;
 
+import java.util.List;
+
 public class QuitCommand extends Command {
     public static String commandName = "quit";
     public final String message = "Goodbye!";
@@ -9,7 +11,7 @@ public class QuitCommand extends Command {
     }
 
     @Override
-    public String loadCommand(BookHandler availableBooks, BookHandler borrowedBooks) throws BookNotAvailableException {
+    public String loadCommand(List<LibraryItem> availableBooks, List<LibraryItem> borrowedBooks, List<String> menuItems, User loggedUser) throws LibraryItemNotAvailableException {
         return execute();
     }
 
