@@ -5,11 +5,8 @@ public class User {
     private String email;
     private String phoneNo;
     private String libraryNo;
-    private String phone;
 
-    public User() {
-    }
-    public void setUser(String name, String email, String phoneNo, String libraryNo) {
+    public User(String name, String email, String phoneNo, String libraryNo) {
         this.name = name;
         this.email = email;
         this.phoneNo = phoneNo;
@@ -25,10 +22,26 @@ public class User {
     }
 
     public String getPhone() {
-        return phone;
+        return phoneNo;
     }
 
     public String getLibraryNo() {
         return libraryNo;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPhone(String phone) {
+        this.phoneNo = phone;
+    }
+
+    public void setLibraryNo(String libraryNo) {
+        this.libraryNo = libraryNo;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

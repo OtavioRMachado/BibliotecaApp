@@ -23,7 +23,10 @@ public class LoginCommand extends Command {
     @Override
     public String loadCommand(List<LibraryItem> availableBooks, List<LibraryItem> borrowedBooks, List<String> menuItems, User loggedUser) throws LibraryItemNotAvailableException, UserNotLoggedInException {
         String result = execute();
-        loggedUser.setUser(this.loggedUser.getName(), this.loggedUser.getEmail(), this.loggedUser.getPhone(), this.loggedUser.getLibraryNo());
+        loggedUser.setName(this.loggedUser.getName());
+        loggedUser.setPhone(this.loggedUser.getPhone());
+        loggedUser.setLibraryNo(this.loggedUser.getLibraryNo());
+        loggedUser.setEmail(this.loggedUser.getEmail());
         return result;
     }
 

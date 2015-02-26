@@ -11,8 +11,7 @@ public class UsersHandler {
 
     private static User getFromDataIfCorrect(String libraryNo, String password) {
         if(libraryNo == "123-4567" && password == "12345") {
-            User loggedUser = new User();
-            loggedUser.setUser("Otavio", "omachado@thoughtworks.com", "5381588006", libraryNo);
+            User loggedUser = new User("Otavio", "omachado@thoughtworks.com", "5381588006", libraryNo);
             return loggedUser;
         }
         return null;

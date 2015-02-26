@@ -21,8 +21,7 @@ public class CheckoutCommandTest {
         availableBooks.add(harryPotter);
 
         CheckoutCommand checkoutCommand = new CheckoutCommand(harryPotter.getID());
-        User user = new User();
-        user.setUser("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+        User user = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
 
         ArrayList<String> menuItems = new ArrayList<String>();
         checkoutCommand.loadCommand(availableBooks, notAvailableBooks, menuItems, user);
@@ -34,8 +33,7 @@ public class CheckoutCommandTest {
     @Test(expected = LibraryItemNotAvailableException.class)
     public void shouldNotCheckoutBookBecauseItIsNotAvailable() throws LibraryItemNotAvailableException, UserNotLoggedInException {
         Book myBook = new Book("JKRowling", "HP", 1991);
-        User loggedUser = new User();
-        loggedUser.setUser("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+        User loggedUser = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
         myBook.checkOut(loggedUser);
         List<LibraryItem> availableBooks = new ArrayList<LibraryItem>();
         List<LibraryItem> notAvailableBooks = new ArrayList<LibraryItem>();
@@ -46,8 +44,7 @@ public class CheckoutCommandTest {
     @Test
     public void shouldNotCheckoutBookBecauseItDoesNotExist() throws LibraryItemNotAvailableException, UserNotLoggedInException {
         ExpectedException expectedException = ExpectedException.none();
-        User loggedUser = new User();
-        loggedUser.setUser("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+        User loggedUser = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
         List<LibraryItem> availableBooks = new ArrayList<LibraryItem>();
         List<LibraryItem> notAvailableBooks = new ArrayList<LibraryItem>();
         expectedException.expect(NullPointerException.class);

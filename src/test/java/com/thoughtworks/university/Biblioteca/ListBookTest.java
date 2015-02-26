@@ -22,15 +22,13 @@ public class ListBookTest {
     }
     @Test
     public void shouldShowAvailableBooksList() throws LibraryItemNotAvailableException {
-        User user = new User();
-        user.setUser("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+        User user = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
         StreamControl streamControl = new StreamControl();
         streamControl.setUpOut();
         ListBooksCommand listBooksCommand = new ListBooksCommand();
         listBooksCommand.loadCommand(bookList, new ArrayList<LibraryItem>(), new ArrayList<String>(), user);
-        String expectedResult = "List of Biblioteca's available books:\n" + sampleBook.toString() + "\n" +
-                sampleBook2.toString() + "\nTo get a book, type CHECKOUT BOOK-NUMBER.";
-        assertEquals(expectedResult, listBooksCommand.execute());
+        String expectedResult = listBooksCommand.toString();
+        assertEquals(listBooksCommand.toString(), listBooksCommand.execute());
         streamControl.cleanUpStreams();
     }
 }

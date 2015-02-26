@@ -15,7 +15,7 @@ public class BibliotecaApp {
         List<String> menuItems = new ArrayList<String>();
         List<LibraryItem> availableBooks = new ArrayList<LibraryItem>();
         List<LibraryItem> borrowedBooks = new ArrayList<LibraryItem>();
-        User loggedUser = new User();
+        User loggedUser = new AnonymousUser();
 
         System.out.println(WELCOME_MESSAGE);
 
@@ -42,7 +42,7 @@ public class BibliotecaApp {
     }
 
     private static void loadMenu(List<String> menuItems) {
-        menuItems.add(ListBooksCommand.command);
+        menuItems.add(ListBooksCommand.getCommandName());
     }
 
     private static Command getCommandFromLine() {

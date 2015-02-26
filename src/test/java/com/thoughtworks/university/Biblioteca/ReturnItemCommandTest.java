@@ -15,8 +15,7 @@ public class ReturnItemCommandTest {
         Book myBook = new Book("JKRowling", "HP", 1991);
         List<LibraryItem> availableBooks = new ArrayList<LibraryItem>();
         List<LibraryItem> notAvailableBooks = new ArrayList<LibraryItem>();
-        User user = new User();
-        user.setUser("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+        User user = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
 
         notAvailableBooks.add(myBook);
         myBook.checkOut(user);
@@ -28,8 +27,7 @@ public class ReturnItemCommandTest {
     }
     @Test
     public void shouldNotReturnBookBecauseItIsNotBorrowed() throws LibraryItemNotAvailableException {
-        User user = new User();
-        user.setUser("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
+        User user = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
         List<LibraryItem> availableBooks = new ArrayList<LibraryItem>();
         List<LibraryItem> notAvailableBooks = new ArrayList<LibraryItem>();
         ReturnItemCommand returnItemCommand = new ReturnItemCommand(99);

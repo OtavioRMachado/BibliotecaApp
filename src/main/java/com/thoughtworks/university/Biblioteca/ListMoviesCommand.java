@@ -1,6 +1,5 @@
 package com.thoughtworks.university.Biblioteca;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ListMoviesCommand extends Command {
