@@ -69,6 +69,10 @@ public class BookTest {
 
     @Test(expected = UserNotLoggedInException.class)
     public void shouldCauseExceptionWhenUserIsNotLoggedIn() throws LibraryItemNotAvailableException, UserNotLoggedInException {
+<<<<<<< HEAD
         book.checkOut(new AnonymousUser());
+=======
+        book.checkOut(null);
+>>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
     }
 }

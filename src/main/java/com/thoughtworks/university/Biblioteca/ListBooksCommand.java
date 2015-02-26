@@ -24,11 +24,16 @@ public class ListBooksCommand extends Command {
         message = new StringBuilder();
         message.append("List of Biblioteca's available books:\n");
         for(LibraryItem libraryItem : bookList) {
+<<<<<<< HEAD
             if(libraryItem.getClass() == Book.class) {
                 usedBook = (Book) libraryItem;
                 message.append(usedBook.toString());
                 message.append("\n");
             }
+=======
+            usedBook = (Book) libraryItem;
+            message.append(usedBook.toString());
+>>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
         }
         message.append("To get a book, type CHECKOUT BOOK-NUMBER.");
         return message.toString();

@@ -40,9 +40,12 @@ public class Movie extends LibraryItem {
     public String toString() {
         return String.format("(%d) %s - %s (%d) - %s", getID(), getTitle(), getDirector(), getYear(), getRating());
     }
+<<<<<<< HEAD
 
     @Override
     public String getClassName() {
         return "Movie";
     }
+=======
+>>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
 }

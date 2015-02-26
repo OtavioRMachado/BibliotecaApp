@@ -36,6 +36,7 @@ public class CommandParser {
         if(isListMoviesCommand(line)) {
             return new ListMoviesCommand();
         }
+<<<<<<< HEAD
         if(isUserProfileCommand(lineList[0])) {
             return new UserProfileCommand();
         }
@@ -46,6 +47,11 @@ public class CommandParser {
         return line.toLowerCase().contains(UserProfileCommand.getCommandName());
     }
 
+=======
+        return new InvalidCommand();
+    }
+
+>>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
     private static boolean isListMoviesCommand(String line) {
         return line.toLowerCase().contains(ListMoviesCommand.getCommandName());
     }

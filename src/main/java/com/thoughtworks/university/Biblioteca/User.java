@@ -44,9 +44,12 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+<<<<<<< HEAD
 
     @Override
     public String toString() {
         return String.format("User %s\nName: %s\nE-mail: %s\nPhone No: %s", libraryNo, name, email, phoneNo);
     }
+=======
+>>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
 }

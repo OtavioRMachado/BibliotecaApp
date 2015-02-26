@@ -18,10 +18,13 @@ public class LibraryItem {
         this.available = true;
         this.whoHas = null;
     }
+<<<<<<< HEAD
 
     public String getClassName() {
         return "item";
     };
+=======
+>>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
     public boolean isAvailable() {
         return available;
     }
@@ -42,7 +45,11 @@ public class LibraryItem {
         if(!available) {
             throw new LibraryItemNotAvailableException();
         }
+<<<<<<< HEAD
         if(loggedUser.getLibraryNo() == "") {
+=======
+        if(loggedUser == null || loggedUser.getLibraryNo() == null) {
+>>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
             throw new UserNotLoggedInException();
         }
         this.available = false;

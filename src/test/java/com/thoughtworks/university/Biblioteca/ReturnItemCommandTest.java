@@ -31,6 +31,10 @@ public class ReturnItemCommandTest {
         List<LibraryItem> availableBooks = new ArrayList<LibraryItem>();
         List<LibraryItem> notAvailableBooks = new ArrayList<LibraryItem>();
         ReturnItemCommand returnItemCommand = new ReturnItemCommand(99);
+<<<<<<< HEAD
         assertEquals("That item is not available.", returnItemCommand.loadCommand(availableBooks, notAvailableBooks, new ArrayList<String>(), user));
+=======
+        assertEquals("That book is not available.", returnItemCommand.loadCommand(availableBooks, notAvailableBooks, new ArrayList<String>(), user));
+>>>>>>> abfa025a4c8e07a43fbd556d4dfa21ad46e1a990
     }
 }
