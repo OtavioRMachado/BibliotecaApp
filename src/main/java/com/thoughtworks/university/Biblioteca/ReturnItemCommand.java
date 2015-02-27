@@ -9,7 +9,7 @@ public class ReturnItemCommand extends Command {
     private LibraryItem desiredItem;
     private int itemID;
     private User loggedUser;
-    private final String successMessage = "Thank you for returning the %s";
+    private final String successMessage = "Thank you for returning \"%s\"";
     private final String failureMessage = "That item is not available.";
 
     @Override
@@ -25,7 +25,7 @@ public class ReturnItemCommand extends Command {
         } catch (UserNotLoggedInException e) {
             return e.message;
         }
-        return String.format(successMessage, desiredItem.getClassName());
+        return String.format(successMessage, desiredItem.getTitle());
     }
 
     private LibraryItem getItemByID(int desiredID) {

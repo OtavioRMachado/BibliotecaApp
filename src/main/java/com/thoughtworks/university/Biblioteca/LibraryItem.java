@@ -1,6 +1,6 @@
 package com.thoughtworks.university.Biblioteca;
 
-public class LibraryItem {
+public abstract class LibraryItem {
     protected String title;
     protected static int idCounter = 1;
     protected String author;
