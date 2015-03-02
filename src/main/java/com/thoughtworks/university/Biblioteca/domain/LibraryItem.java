@@ -1,5 +1,8 @@
 package com.thoughtworks.university.Biblioteca.domain;
 
+/*
+ * Responsibility: Defines all library items, its data and the ability to mark something as checked out.
+ */
 public abstract class LibraryItem {
     protected String title;
     protected static int idCounter = 1;

@@ -13,6 +13,10 @@ public class ReturnItemCommand extends Command {
     private final String failureMessage = "That item is not available.";
     private int itemID;
 
+    /*
+     * Responsibility: This command's responsibility is to pick one book from the borrowedItems list and
+     * put it back in availableItems, marking it as available to checkout.
+     */
     public ReturnItemCommand(int value) {
         itemID = value;
     }

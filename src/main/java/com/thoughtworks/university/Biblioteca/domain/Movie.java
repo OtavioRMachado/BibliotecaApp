@@ -1,5 +1,8 @@
 package com.thoughtworks.university.Biblioteca.domain;
 
+/*
+ * Responsibility: To define a movie and its important data.
+ */
 public class Movie extends LibraryItem {
     private static final double MAX_RATING = 10.0;
     private static final double MIN_RATING = 0.0;

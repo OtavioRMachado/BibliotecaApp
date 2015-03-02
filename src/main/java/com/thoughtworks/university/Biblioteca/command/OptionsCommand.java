@@ -6,6 +6,9 @@ import com.thoughtworks.university.Biblioteca.domain.User;
 
 import java.util.List;
 
+/*
+ * Responsibility: Shows the data in menuList.
+ */
 public class OptionsCommand extends Command {
     protected static final String commandName = "options";
 

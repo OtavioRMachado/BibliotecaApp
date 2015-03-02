@@ -25,11 +25,8 @@ public class ListBookTest {
     @Test
     public void shouldShowAvailableBooksList() throws LibraryItemNotAvailableException {
         User user = new User("Otavio", "omachado@thoughtworks.com", "05381588006", "12345");
-        StreamControl streamControl = new StreamControl();
-        streamControl.setUpOut();
         ListBooksCommand listBooksCommand = new ListBooksCommand();
         String result = listBooksCommand.execute(bookList, new ArrayList<LibraryItem>(), new ArrayList<String>(), user);
         assertEquals(listBooksCommand.toString(), result);
-        streamControl.cleanUpStreams();
     }
 }

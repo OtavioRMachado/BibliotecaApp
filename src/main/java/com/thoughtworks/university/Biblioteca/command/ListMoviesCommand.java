@@ -4,6 +4,9 @@ import com.thoughtworks.university.Biblioteca.domain.*;
 
 import java.util.List;
 
+/*
+ * Responsibility: To show the user all movies contained in the list availableItems.
+ */
 public class ListMoviesCommand extends Command {
     private static final String commandName = "list movies";
     private List<LibraryItem> availableItems;

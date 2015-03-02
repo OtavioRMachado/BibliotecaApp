@@ -1,5 +1,8 @@
 package com.thoughtworks.university.Biblioteca.domain;
 
+/*
+ * Responsibility: Defines a book item and the way it is shown to the user.
+ */
 public class Book extends LibraryItem {
 
     public Book(String author, String title, int year) {

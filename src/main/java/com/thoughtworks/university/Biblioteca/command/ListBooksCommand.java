@@ -7,6 +7,9 @@ import com.thoughtworks.university.Biblioteca.domain.Book;
 
 import java.util.List;
 
+/*
+ * Responsibility: To show the user all books contained in the list availableItems.
+ */
 public class ListBooksCommand extends Command {
     private static final String commandName = "list books";
     protected List<LibraryItem> itemsList;

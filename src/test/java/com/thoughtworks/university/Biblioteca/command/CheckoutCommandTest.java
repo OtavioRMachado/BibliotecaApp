@@ -1,7 +1,5 @@
 package com.thoughtworks.university.Biblioteca.command;
 
-import com.thoughtworks.university.Biblioteca.command.CheckoutCommand;
-import com.thoughtworks.university.Biblioteca.command.InvalidCommand;
 import com.thoughtworks.university.Biblioteca.domain.*;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -9,9 +7,7 @@ import org.junit.rules.ExpectedException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class CheckoutCommandTest {

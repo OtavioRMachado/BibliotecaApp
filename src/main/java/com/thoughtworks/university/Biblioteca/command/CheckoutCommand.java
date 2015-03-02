@@ -7,6 +7,11 @@ import com.thoughtworks.university.Biblioteca.domain.UserNotLoggedInException;
 
 import java.util.List;
 
+/*
+ * Responsibility: Checkout books.
+ * It gets the available books, the ID of the Book I want
+ * and marks it as not available.
+ */
 public class CheckoutCommand extends Command {
     private static final String commandName = "checkout";
     private LibraryItem desiredItem;

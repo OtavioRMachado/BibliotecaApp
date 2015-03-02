@@ -5,7 +5,9 @@ import com.thoughtworks.university.Biblioteca.domain.LibraryItemNotAvailableExce
 import com.thoughtworks.university.Biblioteca.domain.User;
 
 import java.util.List;
-
+/*
+ * Responsibility: it has to show a friendly goodbye message so our clients return :D
+ */
 public class QuitCommand extends Command {
     public static String commandName = "quit";
     public final String message = "Goodbye!";

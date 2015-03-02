@@ -4,6 +4,9 @@ import com.thoughtworks.university.Biblioteca.domain.*;
 
 import java.util.List;
 
+/*
+ * Responsibility: Logs in or logs out from the system depending on
+ */
 public class LoginCommand extends Command {
     protected static final String commandName = "login";
     private final String libraryNo;

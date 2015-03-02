@@ -1,5 +1,8 @@
 package com.thoughtworks.university.Biblioteca.command;
 
+/*
+ * Responsibility: Defines what command has been written by the user.
+ */
 public class CommandParser {
     public static Command parseCommand(String line) {
         String[] lineList = line.split(" ");
