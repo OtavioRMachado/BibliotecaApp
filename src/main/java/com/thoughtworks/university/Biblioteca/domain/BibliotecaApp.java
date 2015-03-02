@@ -2,11 +2,14 @@ package com.thoughtworks.university.Biblioteca.domain;
 
 import com.thoughtworks.university.Biblioteca.command.*;
 
+import javax.swing.text.html.parser.Parser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /*
  * Responsibility: Glue everything together.
@@ -20,21 +23,68 @@ public class BibliotecaApp {
         List<LibraryItem> availableItems = new ArrayList<LibraryItem>();
         List<LibraryItem> borrowedItems = new ArrayList<LibraryItem>();
         User loggedUser = new AnonymousUser();
+        Map<String, ParserCommand> rulesMapping = new HashMap<String, ParserCommand>();
 
         System.out.println(WELCOME_MESSAGE);
 
         loadMenu(menuItems);
         loadAvailableItems(availableItems);
+        loadRules(rulesMapping);
         loadBorrowedItems(borrowedItems);
 
         Command myCommand;
         do {
-            myCommand = getCommandFromLine();
+            myCommand = getCommandFromLine(rulesMapping);
             commandMessage = myCommand.execute(availableItems, borrowedItems, menuItems, loggedUser);
             System.out.println(commandMessage);
         } while(!(myCommand instanceof QuitCommand));
 
     }
+
+    private static void loadRules(Map<String, ParserCommand> rulesMapping) {
+        rulesMapping.put("quit", getQuitParser());
+        rulesMapping.put("options", getOptionsParser());
+        rulesMapping.put("checkout", getCheckoutParser());
+        rulesMapping.put("list books", getListBooksParser());
+        rulesMapping.put("list movies",  getListMoviesParser());
+        rulesMapping.put("return", getReturnParser());
+        rulesMapping.put("profile", getProfileParser());
+        rulesMapping.put("login", getLoginParser());
+    }
+
+    private static ParserCommand getLoginParser() {
+        return new LoginParser();
+    }
+
+    private static ParserCommand getProfileParser() {
+        return new ProfileParser();
+    }
+
+    private static ParserCommand getReturnParser() {
+        return new ReturnParser();
+    }
+
+    private static ParserCommand getListMoviesParser() {
+        return new ListMoviesParser();
+    }
+
+    private static ParserCommand getListBooksParser() {
+        return new ListBooksParser();
+    }
+
+    private static ParserCommand getCheckoutParser() {
+        return new CheckoutParser();
+    }
+
+    private static ParserCommand getQuitParser() {
+        return new QuitParser();
+    }
+
+    private static ParserCommand getOptionsParser() {
+        return new OptionsParser();
+    }
+
+
 
     private static void loadBorrowedItems(List<LibraryItem> borrowedItems) {
         return;
@@ -53,10 +103,11 @@ public class BibliotecaApp {
         menuItems.add(LoginCommand.getCommandName());
     }
 
-    private static Command getCommandFromLine() {
+    private static Command getCommandFromLine(Map<String, ParserCommand> rulesMapping) {
         String line;
         line = readLine();
-        return CommandParser.parseCommand(line);
+        CommandParser commandParser = new CommandParser(rulesMapping);
+        return commandParser.parse(line);
     }
 
     protected static String readLine() {

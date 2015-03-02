@@ -1,66 +1,80 @@
 package com.thoughtworks.university.Biblioteca.command;
 
-import com.thoughtworks.university.Biblioteca.command.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import javax.swing.text.html.parser.Parser;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.Assert.assertTrue;
 
 public class CommandParserTest {
     private List<String> menuItems;
+    private CommandParser commandParser;
 
     @Before
     public void setup() {
         menuItems = new ArrayList<String>();
+        Map<String, ParserCommand> rulesMapping = new HashMap<String, ParserCommand>();
+        rulesMapping.put("quit", new QuitParser());
+        rulesMapping.put("options", new OptionsParser());
+        rulesMapping.put("return", new ReturnParser());
+        rulesMapping.put("checkout", new CheckoutParser());
+        rulesMapping.put("list books", new ListBooksParser());
+        rulesMapping.put("login", new LoginParser());
+        rulesMapping.put("list movies", new ListMoviesParser());
+        rulesMapping.put("profile", new ProfileParser());
+        commandParser = new CommandParser(rulesMapping);
+
     }
 
     @Test
     public void shouldReturnInvalidCommand() {
-        assertTrue(CommandParser.parseCommand("ugabuga") instanceof InvalidCommand);
+        assertTrue(commandParser.parse("ugabuga") instanceof InvalidCommand);
     }
 
     @Test
     public void shouldReturnOptionsCommand() {
-        assertTrue(CommandParser.parseCommand("options") instanceof OptionsCommand);
-        assertTrue(CommandParser.parseCommand("OPTIONS") instanceof OptionsCommand);
+        assertTrue(commandParser.parse("options") instanceof OptionsCommand);
+        assertTrue(commandParser.parse("OPTIONS") instanceof OptionsCommand);
     }
 
     @Test
     public void shouldReturnQuitCommand() {
-        assertTrue(CommandParser.parseCommand("quit") instanceof QuitCommand);
-        assertTrue(CommandParser.parseCommand("QUIT") instanceof QuitCommand);
+        assertTrue(commandParser.parse("quit") instanceof QuitCommand);
+        assertTrue(commandParser.parse("QUIT") instanceof QuitCommand);
     }
 
     @Test
     public void shouldReturnReturnBookCommand() {
-        assertTrue(CommandParser.parseCommand("return 1") instanceof ReturnItemCommand);
+        assertTrue(commandParser.parse("return 1") instanceof ReturnItemCommand);
     }
 
     @Test
     public void shouldReturnCheckoutCommand() {
-        assertTrue(CommandParser.parseCommand("CheckOut 1") instanceof CheckoutCommand);
+        assertTrue(commandParser.parse("CheckOut 1") instanceof CheckoutCommand);
     }
 
     @Test
     public void shouldReturnListBooksCommand() {
-        assertTrue(CommandParser.parseCommand("list books") instanceof ListBooksCommand);
+        assertTrue(commandParser.parse("list books") instanceof ListBooksCommand);
     }
 
     @Test
     public void shouldReturnLoginCommand() {
-        assertTrue(CommandParser.parseCommand("login 123-4567 12345") instanceof LoginCommand);
+        assertTrue(commandParser.parse("login 123-4567 12345") instanceof LoginCommand);
     }
 
     @Test
     public void shouldReturnListMoviesCommand() {
-        assertTrue(CommandParser.parseCommand("list movies") instanceof ListMoviesCommand);
+        assertTrue(commandParser.parse("list movies") instanceof ListMoviesCommand);
     }
 
     @Test
     public void shouldReturnUserProfileCommand() {
-        assertTrue(CommandParser.parseCommand("profile") instanceof UserProfileCommand);
+        assertTrue(commandParser.parse("profile") instanceof UserProfileCommand);
     }
 }
