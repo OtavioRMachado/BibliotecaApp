@@ -17,6 +17,7 @@ public class CheckoutCommand extends Command {
     private LibraryItem desiredItem;
     private int itemID;
     private static final String successMessage = "Thank you! Enjoy the %s";
+    private static final String failureMessage = "That book is not available.";
 
     public CheckoutCommand(int itemID) {
         this.itemID = itemID;
@@ -29,12 +30,8 @@ public class CheckoutCommand extends Command {
             desiredItem.checkOut(loggedUser);
             availableItems.remove(desiredItem);
             borrowedItems.add(desiredItem);
-        }
-        catch(LibraryItemNotAvailableException exception) {
-            throw new LibraryItemNotAvailableException();
-        }
-        catch(NullPointerException nullPointerExc) {
-            return new InvalidCommand().execute(availableItems, borrowedItems, menuItems, loggedUser);
+        } catch(NullPointerException nullPointerExc) {
+            return failureMessage;
         } catch (UserNotLoggedInException e) {
             return e.message;
         }
