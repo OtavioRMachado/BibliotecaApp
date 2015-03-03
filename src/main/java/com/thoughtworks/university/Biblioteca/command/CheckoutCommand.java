@@ -17,7 +17,7 @@ public class CheckoutCommand extends Command {
     private LibraryItem desiredItem;
     private int itemID;
     private static final String successMessage = "Thank you! Enjoy the %s";
-    private static final String failureMessage = "That book is not available.";
+    private static final String failureMessage = "That item is not available.";
 
     public CheckoutCommand(int itemID) {
         this.itemID = itemID;
