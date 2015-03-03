@@ -11,8 +11,10 @@ public class UserProfileCommandTest {
     @Test
     public void shouldReturnErrorWhenNotLoggedIn() throws UserNotLoggedInException, LibraryItemNotAvailableException {
         UserProfileCommand userProfileCommand = new UserProfileCommand();
-        String result = userProfileCommand.execute(new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>(), new ArrayList<String>(), new AnonymousUser());
         UserNotLoggedInException ex = new UserNotLoggedInException();
+
+        String result = userProfileCommand.execute(new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>(), new ArrayList<String>(), new AnonymousUser());
+
         assertEquals(ex.message, result);
     }
 
@@ -20,7 +22,9 @@ public class UserProfileCommandTest {
     public void shouldReturnUserDataWhenLoggedIn() throws UserNotLoggedInException, LibraryItemNotAvailableException {
         UserProfileCommand userProfileCommand = new UserProfileCommand();
         User loggedUser = new User("Otavio", "omachado@thoughtworks.com", "5381588006", "123-4567");
+
         String result = userProfileCommand.execute(new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>(), new ArrayList<String>(), loggedUser);
+
         assertEquals(loggedUser.toString(), result);
     }
 }

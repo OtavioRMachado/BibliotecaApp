@@ -12,12 +12,10 @@ import java.util.Map;
 import static org.junit.Assert.assertTrue;
 
 public class CommandParserTest {
-    private List<String> menuItems;
     private CommandParser commandParser;
 
     @Before
     public void setup() {
-        menuItems = new ArrayList<String>();
         Map<String, ParserCommand> rulesMapping = new HashMap<String, ParserCommand>();
         rulesMapping.put("quit", new QuitParser());
         rulesMapping.put("options", new OptionsParser());

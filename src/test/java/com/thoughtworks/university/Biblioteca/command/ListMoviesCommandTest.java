@@ -12,7 +12,9 @@ public class ListMoviesCommandTest {
     @Test
     public void shouldReturnNothingWhenTheListIsEmpty() throws UserNotLoggedInException, LibraryItemNotAvailableException {
         ListMoviesCommand listMoviesCommand = new ListMoviesCommand();
+
         String result = listMoviesCommand.execute(new ArrayList<LibraryItem>(), new ArrayList<LibraryItem>(), new ArrayList<String>(), new AnonymousUser());
+
         assertEquals(listMoviesCommand.toString(), result);
     }
 
@@ -21,8 +23,10 @@ public class ListMoviesCommandTest {
         ListMoviesCommand listMoviesCommand = new ListMoviesCommand();
         List<LibraryItem> availableItems = new ArrayList<LibraryItem>();
         Movie myMovie = new Movie("Silence of the Lambs", 1991, "Jonathan Demme");
+
         availableItems.add(myMovie);
         String result = listMoviesCommand.execute(availableItems, new ArrayList<LibraryItem>(), new ArrayList<String>(), new AnonymousUser());
+
         assertEquals(listMoviesCommand.toString(), result);
     }
 }

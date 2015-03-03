@@ -8,6 +8,7 @@ public class AnonymousUserTest {
     @Test
     public void shouldCreateEmptyUser() {
         AnonymousUser anonymousUser = new AnonymousUser();
+
         assertEquals(anonymousUser.getLibraryNo(), "");
         assertEquals(anonymousUser.getName(), "");
         assertEquals(anonymousUser.getEmail(), "");

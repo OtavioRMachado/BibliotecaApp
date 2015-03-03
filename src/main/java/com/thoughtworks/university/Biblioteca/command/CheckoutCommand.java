@@ -38,6 +38,7 @@ public class CheckoutCommand extends Command {
         } catch (UserNotLoggedInException e) {
             return e.message;
         }
+
         return String.format(successMessage, desiredItem.getClass().getSimpleName());
     }
 

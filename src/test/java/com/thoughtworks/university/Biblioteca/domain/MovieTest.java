@@ -1,12 +1,9 @@
 package com.thoughtworks.university.Biblioteca.domain;
 
-import com.thoughtworks.university.Biblioteca.domain.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class MovieTest {
     Movie myMovie;
@@ -41,6 +38,7 @@ public class MovieTest {
     @Test
     public void shouldReturnUnratedWhenMovieIsNotRated() {
         Movie unratedMovie = new Movie("Silence of the Lambs", 1991, "Jonathan Demme");
+
         assertEquals("UNRATED", unratedMovie.getRating());
     }
 
