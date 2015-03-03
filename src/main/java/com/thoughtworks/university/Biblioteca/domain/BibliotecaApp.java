@@ -101,6 +101,8 @@ public class BibliotecaApp {
         menuItems.add(ListBooksCommand.getCommandName());
         menuItems.add(ListMoviesCommand.getCommandName());
         menuItems.add(LoginCommand.getCommandName());
+        menuItems.add(CheckoutCommand.getCommandName());
+        menuItems.add(ReturnItemCommand.getCommandName());
     }
 
     private static Command getCommandFromLine(Map<String, ParserCommand> rulesMapping) {

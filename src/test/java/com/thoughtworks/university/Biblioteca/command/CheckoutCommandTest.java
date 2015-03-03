@@ -49,7 +49,7 @@ public class CheckoutCommandTest {
     public void shouldNotCheckoutBookBecauseItDoesNotExist() throws LibraryItemNotAvailableException, UserNotLoggedInException {
         CheckoutCommand checkoutCommand = new CheckoutCommand(99);
 
-        assertEquals("That book is not available.",
+        assertEquals("That item is not available.",
                 checkoutCommand.execute(availableBooks, notAvailableBooks, new ArrayList<String>(), user));
     }
 }
