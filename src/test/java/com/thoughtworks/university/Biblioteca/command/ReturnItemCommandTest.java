@@ -10,9 +10,9 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class ReturnItemCommandTest {
-    List<LibraryItem> availableBooks;
-    List<LibraryItem> notAvailableBooks;
-    User user;
+    private List<LibraryItem> availableBooks;
+    private List<LibraryItem> notAvailableBooks;
+    private User user;
     @Before
     public void setUp() {
         availableBooks = new ArrayList<LibraryItem>();

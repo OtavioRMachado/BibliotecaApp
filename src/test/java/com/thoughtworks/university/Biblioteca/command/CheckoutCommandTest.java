@@ -11,11 +11,11 @@ import static org.junit.Assert.*;
 
 
 public class CheckoutCommandTest {
-    List<LibraryItem> availableBooks;
-    List<LibraryItem> notAvailableBooks;
-    Book harryPotter;
-    User user;
-    ArrayList<String> menuItems;
+    private List<LibraryItem> availableBooks;
+    private List<LibraryItem> notAvailableBooks;
+    private Book harryPotter;
+    private User user;
+    private ArrayList<String> menuItems;
 
     @Before
     public void setUp() {

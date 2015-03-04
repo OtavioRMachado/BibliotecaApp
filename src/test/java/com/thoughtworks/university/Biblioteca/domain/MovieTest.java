@@ -6,12 +6,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class MovieTest {
-    Movie myMovie;
-    String title;
-    int year;
-    String director;
-    double rating;
-    User loggedUser;
+    private Movie myMovie;
+    private String title;
+    private int year;
+    private String director;
+    private double rating;
+    private User loggedUser;
 
     @Before
     public void setUp() throws RatingOutOfBounds {

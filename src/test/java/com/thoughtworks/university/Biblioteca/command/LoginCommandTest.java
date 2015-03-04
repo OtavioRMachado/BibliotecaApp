@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import static org.junit.Assert.assertTrue;
 
 public class LoginCommandTest {
-    User loggedUser;
+    private User loggedUser;
     @Before
     public void setUp() {
         loggedUser = new AnonymousUser();

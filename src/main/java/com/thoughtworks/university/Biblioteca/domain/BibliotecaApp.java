@@ -6,10 +6,7 @@ import javax.swing.text.html.parser.Parser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /*
  * Responsibility: Glue everything together.
@@ -17,13 +14,14 @@ import java.util.Map;
 public class BibliotecaApp {
     private final static String WELCOME_MESSAGE = "Welcome to our Virtual Bangalore Biblioteca. To see the available commands, please type OPTIONS";
 
-    public static void main(String args[]) throws LibraryItemNotAvailableException, UserNotLoggedInException {
+    public static void main(String args[]) throws LibraryItemNotAvailableException, UserNotLoggedInException, IOException {
         String commandMessage;
         List<String> menuItems = new ArrayList<String>();
         List<LibraryItem> availableItems = new ArrayList<LibraryItem>();
         List<LibraryItem> borrowedItems = new ArrayList<LibraryItem>();
         User loggedUser = new AnonymousUser();
         Map<String, ParserCommand> rulesMapping = new HashMap<String, ParserCommand>();
+        List<String> lines = new ArrayList<String>();
 
         System.out.println(WELCOME_MESSAGE);
 
@@ -34,7 +32,7 @@ public class BibliotecaApp {
 
         Command myCommand;
         do {
-            myCommand = getCommandFromLine(rulesMapping);
+            myCommand = getCommandFromLine(rulesMapping, lines);
             commandMessage = myCommand.execute(availableItems, borrowedItems, menuItems, loggedUser);
             System.out.println(commandMessage);
         } while(!(myCommand instanceof QuitCommand));
@@ -105,23 +103,25 @@ public class BibliotecaApp {
         menuItems.add(ReturnItemCommand.getCommandName());
     }
 
-    private static Command getCommandFromLine(Map<String, ParserCommand> rulesMapping) {
-        String line;
-        line = readLine();
+    private static Command getCommandFromLine(Map<String, ParserCommand> rulesMapping, List<String> lines) throws IOException {
+        List<String> linesRead = readLine();
+        if(!linesRead.isEmpty()) {
+            lines.addAll(linesRead);
+        }
         CommandParser commandParser = new CommandParser(rulesMapping);
-        return commandParser.parse(line);
+        Command result = commandParser.parse(lines.get(0));
+        lines.remove(0);
+        return result;
     }
 
-    protected static String readLine() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String line;
-        try {
-            line = reader.readLine();
+    protected static List<String> readLine() throws IOException {
+        BufferedReader myInput = new BufferedReader(new InputStreamReader(System.in));
+        List<String> lines = new ArrayList<String>();
+        String input = myInput.readLine();
+        while(input != null) {
+            lines.add(input);
+            input = myInput.readLine();
         }
-        catch(IOException e) {
-            e.printStackTrace();
-            line = "";
-        }
-        return line;
+        return lines;
     }
 }
