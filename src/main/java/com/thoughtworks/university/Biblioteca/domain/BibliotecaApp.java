@@ -2,7 +2,6 @@ package com.thoughtworks.university.Biblioteca.domain;
 
 import com.thoughtworks.university.Biblioteca.command.*;
 
-import javax.swing.text.html.parser.Parser;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -118,9 +117,8 @@ public class BibliotecaApp {
         BufferedReader myInput = new BufferedReader(new InputStreamReader(System.in));
         List<String> lines = new ArrayList<String>();
         String input = myInput.readLine();
-        while(input != null) {
-            lines.add(input);
-            input = myInput.readLine();
+        if(input != null) {
+            lines = Arrays.asList(input.split("NL"));
         }
         return lines;
     }

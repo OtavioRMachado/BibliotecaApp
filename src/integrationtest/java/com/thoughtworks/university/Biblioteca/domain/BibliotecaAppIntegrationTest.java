@@ -17,7 +17,7 @@ public class BibliotecaAppIntegrationTest {
     private String validLoginCommand;
     private String invalidLoginCommand;
     private String invalidCommand;
-    private final String EOL = System.getProperty("line.separator");
+    private final String EOL = "NL";
 
     @Before
     public void setUp() {
